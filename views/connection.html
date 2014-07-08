@@ -1,0 +1,31 @@
+<?php require_once('header.html');
+// below --> div#main
+?>
+<section id="connection">
+	<h2>Connection</h2>
+	<form id="form-connect" name="form-connect" method="post" action="">
+		<input type="hidden" id="form_name" name="form_name" value="connection"/>
+		<input type="hidden" id="token" name="token" value="<?= (isset($form['token']))?$form['token']:''; ?>"/>
+		<div>
+		<label for="email" class="">Your email: </label>
+			<input class="<?= (isset($formErrors['email']))?'formError':''?>" type="email" name="email" id="email" placeholder="your email" value="<?= (isset($_POST['email']))?$_POST['email']:'';?>" required/>
+			<?= (isset($formErrors['email']))?'<span class="formErrorMsg">'.$formErrors['email'].'</span>':'';?>
+		</div>
+		<div>
+		
+		<label for="password" class="">Your password: </label>
+			<input class="<?= (isset($formErrors['password']))?'formError':''?>" type="password" name="password" id="password" placeholder="your password" required/>
+			<?= (isset($formErrors['password']))?'<span class="formErrorMsg">'.$formErrors['password'].'</span>':'';?>
+		</div>
+		<div>
+			<button type="reset" class="icon-user">Cancel</button>
+			<button type="submit" class="icon-user">connection</button>
+		</div>
+		<div>
+			<span>Time before security expire :<em>5:00</em></span>
+		</div>
+	</form>
+</section>
+<?php
+// above --> div#main
+require_once('footer.html'); ?>

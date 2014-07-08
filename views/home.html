@@ -1,0 +1,20 @@
+<?php require_once('header.html') 
+// below --> div#main
+?>
+<h1>HOME</h1>
+<?php foreach ($last_added as $k => $movies): ?>
+	<section>
+	<h2><?=$k?></h2>
+	<?= ($movies->errors != '')?'<h4 class="error">'.$movies->errors.'</h4>':'';?>
+		<?php foreach ($movies->list as $movie): ?>
+			<a class="movie_frame" style="background-image : url('<?= $this->url('posters/filmothumb_'.$movie->id.'.jpg') ?>');" href="movie/<?=$movie->id?>" title="<?=$movie->title?>">
+				<header><?=$movie->date_add?></header>
+				<span><span>
+			</a>
+		<?php endforeach ?>
+	</section>
+<?php endforeach ?>
+<?php
+
+// above --> div#main
+require_once('footer.html') ?>
