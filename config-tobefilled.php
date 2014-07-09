@@ -18,6 +18,6 @@ $CONFIG=array();
 
 /*----------- FILMO CONFIGURATION -------------*/
 	$CONFIG['siteTitle'] = 'filmo';
-	$CONFIG['movies_lastadded'] = 5;
+	$CONFIG['movies_lastadded'] = 10;
 	$CONFIG['movies_by_page'] = 5; // nombre d'images par pages
 	$CONFIG['shortcut_by_page'] = 5; // nombre de numéro de page en bas de l'index !! impaire
