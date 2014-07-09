@@ -8,7 +8,9 @@ Another way to list your movies.
 
 	not viable for the moment.
 
-
+# 2014-07-09 ######################################
+	Research part
+	and a litle css.
 
 # TO DO ######################################
 
