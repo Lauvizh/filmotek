@@ -20,5 +20,16 @@ function home() {
 
 	$flashMsgs = Flash();
 
-    return array('flashMsgs'=>$flashMsgs, 'CONFIG'=>$CONFIG, 'pageTitle'=>$pageTitle, 'auth'=>$_SESSION['auth'], 'last_added'=>$last_added,);
+	//-- Creation of the search token
+	$token = uniqid(rand(), true);
+	$_SESSION['form_search']['token'] = $token;
+
+    return array(
+    	'flashMsgs'=>$flashMsgs,
+    	'CONFIG'=>$CONFIG,
+    	'pageTitle'=>$pageTitle,
+    	'auth'=>$_SESSION['auth'],
+    	'form'=>$_SESSION['form_search'],
+    	'last_added'=>$last_added,
+    	);
 }

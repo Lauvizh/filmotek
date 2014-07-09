@@ -91,6 +91,52 @@ function getMovieInfos($id){
         }        
     }
 }
+
+/*--------------------------- GET SEARCH RESULTS -----------------------*/
+function getSearchResults($request){
+    global $db;
+    global $CONFIG;
+    $infofields = array('title','title_orig','actors','directors','year');
+    $results = array();
+    $temp_results = array();
+    //requette
+    $key_words = explode(" ",$request);
+    $nbkey_words = count($key_words);
+
+    foreach ($key_words as $key_word) {
+        if (strlen($key_word) >= 3) {
+            foreach ($infofields as $field) {
+                $result = $db->query('SELECT id,title,title_orig,actors,directors,year FROM '.$CONFIG['PrefixDB'].'List WHERE '.$field.' REGEXP "([[:<:]])'.$key_word.'([[:>:]])" ORDER BY year DESC, title ASC')->fetchall(PDO::FETCH_ASSOC);
+                if (!empty($result)) {
+                    foreach ($result as $movie) {
+                        if (isset($results[$movie['id']])) {
+                            $results[$movie['id']]['search'][$field][] = $key_word;
+                        }
+                        else{
+                            $movie['search'][$field][] = $key_word;
+                            $results[$movie['id']] = $movie;
+                        }
+                    }
+                }    
+            }
+        }
+    }
+
+
+    for ($i=$nbkey_words; $i > 0 ; $i--) {
+        foreach ($results as $id => $result) {
+            foreach ($result['search'] as $n => $field) {
+                if (count($field) == $i) {
+                    $temp_results[$id] = $result;
+                }
+            }
+        }
+
+    }
+    $results = $temp_results;
+    return $results;
+}
+
 /*--------------------------- MESSAGE FLASH -----------------------*/
 
 function setFlash($message, $type='success'){

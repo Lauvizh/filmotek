@@ -41,7 +41,7 @@ Class MovieDetails{
 	public $category;
 	public $genre;
 	public $country;
-	public $year_prod;
+	public $year;
 	public $lenght;
 	public $description;
 	public $actors;

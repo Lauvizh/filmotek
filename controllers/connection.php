@@ -12,8 +12,8 @@ function connection() {
 		global $CONFIG;
 		$formErrors = array();
 		$pageTitle = 'connection';
-		if(isset($_SESSION['form']['token']) && isset($_POST['token'])){
-			if($_SESSION['form']['token'] == $_POST['token']){
+		if(isset($_SESSION['form_conection']['token']) && isset($_POST['token'])){
+			if($_SESSION['form_conection']['token'] == $_POST['token']){
 	        	if(!isset($_POST['email']) || !isEmail($_POST['email'])){
 	        		$formErrors['email'] = 'invalid email';
 	        		}
@@ -26,7 +26,7 @@ function connection() {
 	            		$_SESSION['auth'] = $user;
 	            		$_SESSION['auth']['status'] = true;
 	            		setFlash('Connection ok', 'success');
-	            		unset($_SESSION['form']);
+	            		unset($_SESSION['form_conection']);
 	            		header('Location: /');
 						die();
 	            	}
@@ -42,9 +42,15 @@ function connection() {
 		else{
 			//----- CSRF Protection
 			$token = uniqid(rand(), true);
-			$_SESSION['form']['token'] = $token;
+			$_SESSION['form_conection']['token'] = $token;
 		}
 	}
 	$flashMsgs = Flash();
-	return array('flashMsgs'=>$flashMsgs, 'formErrors'=>$formErrors, 'CONFIG'=>$CONFIG, 'pageTitle'=>$pageTitle, 'form'=>$_SESSION['form']);
+	return array(
+		'flashMsgs'=>$flashMsgs,
+		'formErrors'=>$formErrors,
+		'CONFIG'=>$CONFIG,
+		'pageTitle'=>$pageTitle,
+		'form'=>$_SESSION['form_conection']
+		);
 }

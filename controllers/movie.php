@@ -11,8 +11,18 @@ function movie($id) {
 	else{
 		global $CONFIG;
 		$movie = new MovieDetails($id);
-		$pageTitle = '';
+		$pageTitle = $movie->title;
+		//-- Creation of the search token
+		$token = uniqid(rand(), true);
+		$_SESSION['form_search']['token'] = $token;
 	}
 	$flashMsgs = Flash();
-	return array('flashMsgs'=>$flashMsgs, 'CONFIG'=>$CONFIG, 'auth'=>$_SESSION['auth'], 'pageTitle'=>$pageTitle, 'movie'=>$movie);
+	return array(
+		'flashMsgs'=>$flashMsgs,
+		'CONFIG'=>$CONFIG,
+		'auth'=>$_SESSION['auth'],
+		'form'=>$_SESSION['form_search'],
+		'pageTitle'=>$pageTitle,
+		'movie'=>$movie
+		);
 }

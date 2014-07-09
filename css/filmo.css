@@ -70,6 +70,112 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 /*######################## - GENERAL - #############################*/
 /*##################################################################*/
 /*######################## - CONTENU - #############################*/
+	/*-----------------------------------------------------------------------------*/
+	/*----------------------------------- HEADER ----------------------------------*/
+
+			body>header{
+				position: fixed; top:0px; left: 0px; z-index: 500;
+				background-color: rgb(250,250,250);
+				border-bottom: 1px	solid rgb(180,180,180);
+				width: 100%;
+				min-width: 410px;
+				height: 42px;
+				box-sizing:border-box;
+				-moz-box-sizing:border-box;
+			}
+
+			#menu ul{
+				position: absolute; top: 7px; left: 0px;
+				margin: 0px;
+				text-align: left;
+				white-space: nowrap;
+			}
+			#menu li{
+				display: inline-block;
+				min-width: 35px;
+				margin-left: 20px; 
+    			overflow: hidden;
+    			text-overflow: ellipsis;
+    			white-space: nowrap;
+
+			}
+			.menu_link{
+				font-size: 20px;
+				text-decoration: none;
+			}
+			.menu_link:hover{text-decoration: none;}
+
+	/*--------------------------------- RECHERCHE ---------------------------------*/
+
+			#recherche{
+				position: absolute; top:3px; right: 3px; z-index: 501;
+				min-width: 185px;
+				box-sizing:border-box;
+				-moz-box-sizing:border-box;
+			}
+			/*zone input */
+			#recherche input{
+				background-color: rgb(250,250,250);
+				border:1px solid rgb(180,180,180);
+				-webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				border-radius: 0px;
+				margin: 0px;
+				width: 100%;
+				height: 35px;
+				text-align: left;
+				}
+
+			#rech-input-frame{
+				position: absolute; right: 0px; top:0px;
+				width: 100%;
+				max-width: 600px;
+				height: 35px;
+				box-sizing:border-box;
+				-moz-box-sizing:border-box;
+			}
+
+			/*bouton de recherche*/
+			#recherche button{
+				position: absolute; top: 0px; right: 0px;
+				border:1px solid rgb(180,180,180);
+				margin: 0px;
+				width: 35px;
+				height: 35px;
+				}
+
+			/* tableau de suggestions */
+			#hints-frame{
+				position: absolute; top: 35px; left: 0px; z-index: 100;
+				width: 100%;
+				max-height: 100px;
+				overflow: auto;
+				background-color: rgb(80,80,80);
+				color: rgb(200,200,200);
+				box-sizing:border-box;
+				-moz-box-sizing:border-box;
+				opacity: 0.90;
+			}
+			#hints-frame table{
+				position: relative;
+				width: 100%;
+			}
+			#hints-frame tr{
+				border-bottom: 1px solid rgb(100,100,100);
+				vertical-align: middle;
+				padding: 2px;
+			}
+			#hints-frame tr:hover{
+				background-color: rgb(60,60,60);
+				cursor: pointer;
+			}
+
+	/*--------------------------------- RECHERCHE ---------------------------------*/
+
+#main{
+	text-align: center;
+}
+
 /*---- FORMS ----*/
 .formError{
 	border: 2px solid red;
@@ -78,12 +184,20 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 	color: red;
 	font-weight: bold;
 }
-/*----- HOME -----*/
+/*----- THUMB MOVIE -----*/
+.thumb_frame{
+	display: inline-block;
+	position: relative;
+	list-style: none;
+	vertical-align: top;
+	height: 150px;
+	width: 120px;
+}
 .movie_frame{
 	display: inline-block;
 	position: relative;
-	height: 150px;
-	width: 120px;
+	height: 100%;
+	width: 100%;
 	background-position: 50% 50%;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -98,6 +212,27 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 	background-color: gray;
 	font-size: 12px;
 }
-
+.movie_frame>dl{
+	display: block;
+	position: relative; z-index: 10;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(90,90,90,0.7);
+	opacity: 0;
+	transition:0.5s;
+}
+.movie_frame dt{
+	color: rgb(230,230,230);
+	font-size: 14px;
+}
+.movie_frame dd{
+	margin-left: 3px;
+	color: rgb(200,200,200);
+	font-size: 12px;
+}
+.movie_frame:hover>dl{
+	opacity: 1;
+	transition:0.5s;
+}
 
 /*######################## - CONTENU - #############################*/

@@ -10,6 +10,7 @@ $db = dbConnection();
 //----- CONTROLLERS
 require_once 'controllers/connection.php';
 require_once 'controllers/home.php';
+require_once 'controllers/searchengine.php';
 require_once 'controllers/movie.php';
 
 //----- PHP BOTTLE

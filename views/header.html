@@ -7,6 +7,7 @@
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="<?= $this->url('css/reset.css') ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $this->url('css/filmo.css') ?>" />
+	<script type="text/javascript" src="<?= $this->url('js/jquery-2.1.1.min.js') ?>"></script>
 	<script type="text/javascript" src="<?= $this->url('js/filmo.js') ?>"></script>
 </head>
 
@@ -16,21 +17,23 @@
 	<div id="menu">
 		<nav>
 			<ul id="menu_list">
-					<li><a class="icon-home menu_link" href="/">Home</a></li>
+				<li><a class="icon-home menu_link" href="<?= $this->url('home') ?>">Home</a></li>
 			</ul>
 		</nav>
 	</div>
 	<div id="recherche">
-		<form id="form-rech" name="form-rech" method="post" action="/">
+		<form id="form-rech" name="form-rech" method="post" action="<?= $this->url('searchengine') ?>">
 			<div id="rech-input-frame">
-				<input type="text" name="rech" id="rech" placeholder="" autocomplete="off" required/>
-				<div id="hints-frame"><table id="txtHint"></table></div>
+				<input type="hidden" id="token" name="token" value="<?= (isset($form['token']))?$form['token']:''; ?>"/>
+				<input class="<?= (isset($formErrors['search']))?'formError':''?>" type="text" name="search" id="search" placeholder="" autocomplete="off" />
+				<?= (isset($formErrors['search']))?'<span class="formErrorMsg">'.$formErrors['search'].'</span>':'';?>
+				<ul id="txtHint"></ul>
 			</div>
-			<button type="submit" ><span class="icon-search"></span></button>
+			<button type="submit" ><span class="icon-search">search</span></button>
 		</form>
 	</div>
 <?php endif ?>
 <?= (isset($flashMsgs))?$flashMsgs:'';?>
 </header>
-<div id="main">
+<div id="main"><!-- start of div#main -->
 
