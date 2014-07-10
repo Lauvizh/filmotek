@@ -1,0 +1,35 @@
+<?php require_once('header.html') 
+// below : div#main
+?>
+<nav id="menu_genres">
+	<ul>
+	<?php foreach ($genres as $urlgenre => $genre): ?>
+		<li><a href="<?= $this->url('genre/'.$urlgenre)?>"><?= $genre ?></a></li>
+	<?php endforeach ?>
+	</ul>
+</nav>
+
+<?php if ($ChosenGenre == 'all'): ?>
+
+<?php else: ?>
+	<h1><?=$ChosenGenre?></h1>
+	<em><?= $nbresults ?> results found.</em>
+	<ul>
+	<?php foreach ($results as $movie): ?>
+		<li class="thumb_frame">
+			<a class="movie_frame" title="<?=$movie['title']?>" href="<?= $this->url('movie',array('id'=>$movie['id'])) ?>" style="background-image : url('<?= $this->url('posters/filmothumb_'.$movie['id'].'.jpg') ?>');">
+			<dl>
+				<dt>Genre</dt>
+				<dd><?= $movie['genre'] ?></dd>
+			</dl>
+			</a>
+		</li>
+	<?php endforeach ?>
+	</ul>
+<?php endif ?>
+
+
+<?php
+
+// above : div#main
+require_once('footer.html') ?>

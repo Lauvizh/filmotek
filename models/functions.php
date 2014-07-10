@@ -53,6 +53,35 @@ function UserConnect($e, $p){
 
 }
 
+/*--------------------------- GET GENRES -----------------------*/
+
+function getGenres(){
+    global $db;
+    global $CONFIG;
+    $genresList = array();
+    //requette
+        $r = $db->query('SELECT genre FROM '.$CONFIG['PrefixDB'].'List')->fetchall(PDO::FETCH_ASSOC);
+        if(empty($r)){
+            throw new Exception('No genres found.');
+        }
+        else{
+            foreach ($r as $genres) {
+               $temp_genres = preg_split("/[,\-\/.]+/", $genres['genre']);
+               //array_merge($genresList,$temp_genres);
+               foreach ($temp_genres as $key => $value) {
+                    $value = trim($value);
+                    $value = ucfirst(strtolower($value));
+                    //$urlvalue = urlencode($value);
+                    $urlvalue = ValideUrl($value);
+                    $genresList[$urlvalue] = $value;
+               }
+            }
+            $genresList = array_unique($genresList,SORT_STRING);
+            natcasesort($genresList);
+            return $genresList;
+        }  
+    }
+
 /*--------------------------- GET LAST ADDED -----------------------*/
 
 function getLastAdd($category){
@@ -64,6 +93,26 @@ function getLastAdd($category){
         }
     else{
         $r = $db->query('SELECT id,title,date_add FROM '.$CONFIG['PrefixDB'].'List WHERE category = "'.$category.'" ORDER BY date_add DESC, title DESC LIMIT '. $CONFIG['movies_lastadded'])->fetchall(PDO::FETCH_ASSOC);
+        if(empty($r)){
+            throw new Exception('No movie found.');
+        }
+        else{
+            return $r;
+        }  
+    }
+}
+
+/*--------------------------- GET MOVIES BY GENRE -----------------------*/
+
+function getMoviesByGenre($genre){
+    global $db;
+    global $CONFIG;
+    //requette
+    if (!is_string($genre)) {
+        throw new Exception('wrong type of genre.');
+        }
+    else{
+        $r = $db->query('SELECT id,title,genre FROM '.$CONFIG['PrefixDB'].'List WHERE genre REGEXP "([[:<:]])'.$genre.'([[:>:]])" ORDER BY date_add DESC, title DESC')->fetchall(PDO::FETCH_ASSOC);
         if(empty($r)){
             throw new Exception('No movie found.');
         }
@@ -137,6 +186,19 @@ function getSearchResults($request){
     $results['results'] = $temp_results;
     return $results;
 }
+
+/*--------------------------- MESSAGE FLASH -----------------------*/
+    function ValideUrl($string, $charset='utf-8') {
+        $string = htmlentities($string, ENT_NOQUOTES, $charset);
+        $string = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $string);
+        $string = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $string); // pour les ligatures e.g. '&oelig;'
+        $string = preg_replace('#&[^;]+;#', '', $string); // supprime les autres caractères
+        // Mettez ici les caractères spéciaux qui seraient susceptibles d'apparaître dans les titres. La liste ci-dessous est indicative.
+        $speciaux = array("?","!","@","#","%","&amp;","*","(",")","[","]","=","+"," ",";",":","'",".","_");
+        $string = str_replace($speciaux, "-", $string); // Les caractères spéciaux dont les espaces, sont remplacés par un tiret.
+        $string = strtolower(strip_tags($string));
+        return $string;
+    }
 
 /*--------------------------- MESSAGE FLASH -----------------------*/
 

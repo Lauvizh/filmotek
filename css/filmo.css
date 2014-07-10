@@ -194,7 +194,8 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 	list-style: none;
 	vertical-align: top;
 	height: 150px;
-	width: 120px;
+	width: 105px;
+	margin: 20px 05px 05px;
 }
 .movie_frame{
 	display: inline-block;
@@ -202,7 +203,7 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 	height: 100%;
 	width: 100%;
 	background-position: 50% 50%;
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 }
 .movie_frame>header{
@@ -210,7 +211,7 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 	position: absolute; top:-14px; left:60px;
 	margin-left: -50%;
 	height: 14px;
-	width: 120px;
+	width: 80%;
 	text-align: center;
 	background-color: gray;
 	font-size: 12px;
@@ -241,6 +242,29 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 	background-color: inherit;
 	color:rgb(255,255,255);
 	font-weight: bold;
+}
+/**/
+
+#menu_genres li{
+	display: inline;
+	list-style: none;
+	vertical-align: top;
+}
+#menu_genres a{
+	display: inline-block;
+	min-width: 60px;
+	height: 35px;
+	padding: 1px 5px;
+	margin: 3px;
+	line-height: 35px; 
+	background-color: rgb(190,190,190);
+	vertical-align: middle;
+	transition:0.5s;
+}
+#menu_genres a:hover{ 
+	background-color: rgb(170,170,170);
+	text-decoration: none;
+	transition:0.5s;
 }
 
 /*######################## - CONTENU - #############################*/
