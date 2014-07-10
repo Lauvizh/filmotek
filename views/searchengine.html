@@ -1,7 +1,9 @@
 <?php require_once('header.html') 
 // below : div#main
 ?>
+
 <h1>RESULT</h1>
+<div id="data-keywords" data-keywords='<?= json_encode($search_key_words,JSON_FORCE_OBJECT) ?>'></div>
 <em><?= $nbresults ?> results found.</em>
 <ul>
 <?php foreach ($results as $movie): ?>

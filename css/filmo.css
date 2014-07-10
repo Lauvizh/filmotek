@@ -82,6 +82,7 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 				height: 42px;
 				box-sizing:border-box;
 				-moz-box-sizing:border-box;
+				opacity: 0.5;
 			}
 
 			#menu ul{
@@ -109,7 +110,7 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 
 			#recherche{
 				position: absolute; top:3px; right: 3px; z-index: 501;
-				min-width: 185px;
+				min-width: 235px;
 				box-sizing:border-box;
 				-moz-box-sizing:border-box;
 			}
@@ -124,6 +125,7 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 				width: 100%;
 				height: 35px;
 				text-align: left;
+				padding-right: 68px;
 				}
 
 			#rech-input-frame{
@@ -140,7 +142,7 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 				position: absolute; top: 0px; right: 0px;
 				border:1px solid rgb(180,180,180);
 				margin: 0px;
-				width: 35px;
+				width: 65px;
 				height: 35px;
 				}
 
@@ -174,6 +176,7 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 
 #main{
 	text-align: center;
+	padding-top: 42px;
 }
 
 /*---- FORMS ----*/
@@ -233,6 +236,11 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 .movie_frame:hover>dl{
 	opacity: 1;
 	transition:0.5s;
+}
+.movie_frame mark{
+	background-color: inherit;
+	color:rgb(255,255,255);
+	font-weight: bold;
 }
 
 /*######################## - CONTENU - #############################*/

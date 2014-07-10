@@ -133,7 +133,8 @@ function getSearchResults($request){
         }
 
     }
-    $results = $temp_results;
+    $results['key_words'] = $key_words;
+    $results['results'] = $temp_results;
     return $results;
 }
 

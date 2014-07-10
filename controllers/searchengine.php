@@ -11,7 +11,7 @@ function search() {
 	else{
 		global $CONFIG;
 		$formErrors = array();
-		$results = array();
+		$search = array();
 		$nbresults = 0;
 		$pageTitle = 'searchresult';
 		if(isset($_SESSION['form_search']['token']) && isset($_POST['token'])){
@@ -20,8 +20,8 @@ function search() {
 	        		$formErrors['search'] = 'missing search parameters';
 	                }
 	            if (empty($formErrors)) {
-	            	$results = getSearchResults($_POST['search']);
-	            	$nbresults = count($results);
+	            	$search = getSearchResults($_POST['search']);
+	            	$nbresults = count($search['results']);
 	            	
 	            }
 		    }
@@ -44,6 +44,7 @@ function search() {
 		'form'=>$_SESSION['form_search'],
 		'formErrors'=>$formErrors,
 		'nbresults' => $nbresults,
-		'results'=>$results,
+		'search_key_words'=>$search['key_words'], 
+		'results'=>$search['results']
 		);
 }
