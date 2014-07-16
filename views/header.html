@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr" xml:lang="fr">
 <head>
-	<title><?= $CONFIG['siteTitle'].' -- '.$pageTitle ?></title>
-	<link rel="icon" type="image/png" href="favicon.png" />
-	<!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /><![endif]-->
+	<title><?= $CONFIG['siteTitle'].' - '.$pageTitle ?></title>
+	<link rel="icon" type="image/png" href="<?= $this->url('favicon.png') ?>" />
+	<!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="<?= $this->url('favicon.ico') ?>" /><![endif]-->
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="<?= $this->url('css/reset.css') ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $this->url('css/filmo.css') ?>" />
@@ -12,8 +12,8 @@
 </head>
 
 <body>
-<header>
 <?php if (isset($auth['status']) && $auth['status']): ?>
+<header>
 	<div id="menu">
 		<nav>
 			<ul id="menu_list">
@@ -26,15 +26,14 @@
 		<form id="form-rech" name="form-rech" method="post" action="<?= $this->url('searchengine') ?>">
 			<div id="rech-input-frame">
 				<input type="hidden" id="token" name="token" value="<?= (isset($form['token']))?$form['token']:''; ?>"/>
-				<input class="<?= (isset($formErrors['search']))?'formError':''?>" type="text" name="search" id="search" placeholder="" autocomplete="off" />
-				<?= (isset($formErrors['search']))?'<span class="formErrorMsg">'.$formErrors['search'].'</span>':'';?>
+				<input type="text" name="search" id="search" placeholder="" autocomplete="off" />
 				<ul id="txtHint"></ul>
 			</div>
 			<button type="submit" ><span class="icon-search">search</span></button>
 		</form>
 	</div>
+</header>
 <?php endif ?>
 <?= (isset($flashMsgs))?$flashMsgs:'';?>
-</header>
 <div id="main"><!-- start of div#main -->
 

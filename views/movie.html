@@ -1,10 +1,46 @@
 <?php require_once('header.html') 
 // below : div#main
 ?>
-<h1>MOVIE</h1>
-<pre>
-	<?php var_dump($movie); ?>
-</pre>
+
+<h1><?= $movie->title ?></h1>
+<?php if ($movie->title != $movie->title_orig && !empty($movie->title_orig)): ?>
+	<h4><?= $movie->title_orig ?></h4>
+<?php endif ?>
+<section id="movie_sheet">
+<figure>
+  <img src="<?= $this->url('posters/filmo_'.$movie->id.'.jpg') ?>" alt="poster of <?= $movie->title ?>" />
+  <figcaption><?= $movie->title ?></figcaption>
+</figure>
+<dl>
+<?php if (!empty($movie->directors)): ?>
+	<dt>Directors</dt>
+	<dd>
+		<?php foreach ($movie->directors as $urldirector => $director): ?>
+			<a href="<?= $this->url('person/'.$urldirector) ?>"><?= $director ?></a>
+		<?php endforeach ?>
+	</dd>
+<?php endif ?>
+<?php if (!empty($movie->actors)): ?>
+	<dt>Actors</dt>
+	<dd>
+		<?php foreach ($movie->actors as $urlactor => $actor): ?>
+			<a href="<?= $this->url('person/'.$urlactor) ?>"><?= $actor ?></a>
+		<?php endforeach ?>
+	</dd>
+<?php endif ?>
+	<dt>Year of production</dt>
+	<dd><?= $movie->year ?></dd>
+	<dt>Country</dt>
+	<dd><?= $movie->country ?></dd>
+	<dt>Genre</dt>
+	<dd><?= $movie->genre ?></dd>
+	<dt>Description</dt>
+	<dd><?= $movie->description ?></dd>
+	<dt>Duration</dt>
+	<dd><?= $movie->duration ?> min</dd>
+</dl>
+</section>
+
 <?php
 
 // above : div#main

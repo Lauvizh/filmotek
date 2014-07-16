@@ -10,16 +10,30 @@ function genre($ChosenGenre='all') {
 	}
 	else{
 		global $CONFIG;
-		$pageTitle = $ChosenGenre;
+		$pageTitle = 'Unknown genre';
 		$results = array();
+		$genres = array();
 		$nbresults = 0;
 		//-- Creation of the search token
 		$token = uniqid(rand(), true);
 		$_SESSION['form_search']['token'] = $token;
 
-		$genres = getGenres();
+		try {
+			$genres = getList('genre');
+		} catch (Exception $e) {
+			$errors['genres'] = $e->getMessage(); 
+		}
+		
 		if ($ChosenGenre != 'all') {
-			$results = getMoviesByGenre($genres[$ChosenGenre]);
+			if (isset($genres[$ChosenGenre])) {
+				$pageTitle = $genres[$ChosenGenre];
+				try {
+					$results = getMoviesByGenre($genres[$ChosenGenre]);
+				} catch (Exception $e) {
+					$errors['movies'] = $e->getMessage();
+				}
+				
+			}
 			$nbresults = count($results);
 		}
 
@@ -31,6 +45,7 @@ function genre($ChosenGenre='all') {
 		'auth'=>$_SESSION['auth'],
 		'form'=>$_SESSION['form_search'],
 		'pageTitle'=>$pageTitle,
+		'errors'=>$errors,
 		'genres'=>$genres,
 		'ChosenGenre'=>$ChosenGenre,
 		'nbresults' => $nbresults,

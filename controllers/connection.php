@@ -4,7 +4,11 @@
  * @view /views/connection.html
  */
 function connection() {
-	if (isset($_SESSION['auth']['status']) && $_SESSION['auth']['status']) {
+	if (!tableExists('filmoUsers')) {
+		header('Location: /initialisation');
+		die();
+	}
+	else if (isset($_SESSION['auth']['status']) && $_SESSION['auth']['status']) {
 		header('Location: /');
 		die();
 	}

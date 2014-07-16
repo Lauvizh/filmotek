@@ -42,7 +42,7 @@ Class MovieDetails{
 	public $genre;
 	public $country;
 	public $year;
-	public $lenght;
+	public $duration;
 	public $description;
 	public $actors;
 	public $directors;

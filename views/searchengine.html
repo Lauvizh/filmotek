@@ -3,12 +3,20 @@
 ?>
 
 <h1>RESULT</h1>
+<?= (isset($formErrors['search']))?'<span class="formErrorMsg">'.$formErrors['search'].'</span>':'';?>
 <div id="data-keywords" data-keywords='<?= json_encode($search_key_words,JSON_FORCE_OBJECT) ?>'></div>
-<em><?= $nbresults ?> results found.</em>
-<ul>
-<?php foreach ($results as $movie): ?>
+<?php if (empty($results)): ?>
+	<h4>No Movie found for this research</h4>
+	<h5>"<?= implode(', ', $search_key_words)?>"</h5>
+<?php endif ?>
+<?php foreach ($results as $n => $movies): ?>
+<section>
+	<h4><?= $nbresults[$n] ?> movies found with <?= $n ?> matched key word</h4>
+	<ul>
+	<?php foreach ($movies as $movie): ?>
 	<li class="thumb_frame">
 		<a class="movie_frame" title="<?=$movie['title']?>" href="<?= $this->url('movie',array('id'=>$movie['id'])) ?>" style="background-image : url('<?= $this->url('posters/filmothumb_'.$movie['id'].'.jpg') ?>');">
+		<img class="hiddenthumb" src="<?= $this->url('posters/filmothumb_'.$movie['id'].'.jpg') ?>">
 		<dl>
 			<?php foreach ($movie['search'] as $field => $key_words): ?>
 				<dt><?= $field ?></dt>
@@ -17,8 +25,11 @@
 		</dl>
 		</a>
 	</li>
+	<?php endforeach ?>
+	</ul>
+</section>
 <?php endforeach ?>
-</ul>
+
 <?php
 // above : div#main
 require_once('footer.html') ?>

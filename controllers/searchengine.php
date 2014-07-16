@@ -11,18 +11,25 @@ function search() {
 	else{
 		global $CONFIG;
 		$formErrors = array();
-		$search = array();
-		$nbresults = 0;
+		$search['key_words'] = array();
+		$search['results'] = array();
+		$nbresults = array();
 		$pageTitle = 'searchresult';
 		if(isset($_SESSION['form_search']['token']) && isset($_POST['token'])){
 			if($_SESSION['form_search']['token'] == $_POST['token']){
 	        	if (!isset($_POST['search']) || empty($_POST['search'])) {
 	        		$formErrors['search'] = 'missing search parameters';
 	                }
+	            else if (isset($_POST['search']) && strlen($_POST['search']) > 64) {
+	        			$formErrors['search'] = 'your request is to long please try again with less than 64 characteres';
+	        		}
+
 	            if (empty($formErrors)) {
 	            	$search = getSearchResults($_POST['search']);
-	            	$nbresults = count($search['results']);
-	            	
+	            	foreach ($search['results'] as $k => $s) {
+	            		$nbresults[$k] = count($s);
+	            	}
+	            		
 	            }
 		    }
 		    else{

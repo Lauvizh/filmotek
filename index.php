@@ -9,10 +9,12 @@ $db = dbConnection();
 
 //----- CONTROLLERS
 require_once 'controllers/connection.php';
+require_once 'controllers/initialisation.php';
 require_once 'controllers/home.php';
 require_once 'controllers/genre.php';
 require_once 'controllers/searchengine.php';
 require_once 'controllers/movie.php';
+require_once 'controllers/person.php';
 
 //----- PHP BOTTLE
 require_once 'bottle.php';
