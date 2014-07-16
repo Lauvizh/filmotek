@@ -6,6 +6,7 @@
 	<!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="<?= $this->url('favicon.ico') ?>" /><![endif]-->
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="<?= $this->url('css/reset.css') ?>" />
+	<link rel="stylesheet" type="text/css" href="<?= $this->url('css/fontello.css') ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $this->url('css/filmo.css') ?>" />
 	<script type="text/javascript" src="<?= $this->url('js/jquery-2.1.1.min.js') ?>"></script>
 	<script type="text/javascript" src="<?= $this->url('js/filmo.js') ?>"></script>
@@ -16,10 +17,18 @@
 <header>
 	<div id="menu">
 		<nav>
-			<ul id="menu_list">
+			<ul id="menu_user">
 				<li><a class="icon-home menu_link" href="<?= $this->url('home') ?>">Home</a></li>
-				<li><a class="icon-home menu_link" href="<?= $this->url('genre/all') ?>">Genres</a></li>
+				<li><a class="icon-genre menu_link" href="<?= $this->url('genre/all') ?>">Genres</a></li>
 			</ul>
+			<?php if ($auth['rank'] == "admin"): ?>
+			<ul id="menu_admin">
+				<li><a class="icon-admin menu_link" href="<?= $this->url('admin') ?>">Admin</a></li>
+				<li><a class="icon-user submenu_link" href="<?= $this->url('admin/users') ?>">Users</a></li>
+				<li><a class="icon-movie submenu_link" href="<?= $this->url('admin/movies') ?>">Movies</a></li>
+			</ul>
+			<?php endif ?>
+			<div class="clear"></div>
 		</nav>
 	</div>
 	<div id="recherche">
@@ -29,10 +38,12 @@
 				<input type="text" name="search" id="search" placeholder="" autocomplete="off" />
 				<ul id="txtHint"></ul>
 			</div>
-			<button type="submit" ><span class="icon-search">search</span></button>
+			<button type="submit" ><span class="icon-search"><span>search</span></span></button>
 		</form>
 	</div>
 </header>
+
+
 <?php endif ?>
 <?= (isset($flashMsgs))?$flashMsgs:'';?>
 <div id="main"><!-- start of div#main -->

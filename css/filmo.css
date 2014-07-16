@@ -66,6 +66,7 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 	/*--------------------------------- COULEURS ----------------------------------*/
 	/*-----------------------------------------------------------------------------*/
 
+	.clear{ clear: both; }
 /*-----------------------------------------------------------------------------*/
 /*######################## - GENERAL - #############################*/
 /*##################################################################*/
@@ -85,13 +86,17 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 				opacity: 0.5;
 			}
 
-			#menu ul{
-				position: absolute; top: 7px; left: 0px;
-				margin: 0px;
+			/*---------- MENU ------------*/
+			#menu_user, #menu_admin{
+				float:left;
+				margin-top:7px;
+				margin-left: 3px;
 				text-align: left;
 				white-space: nowrap;
 			}
-			#menu li{
+
+			/*-------- USER MENU -----------*/
+			#menu_user li{
 				display: inline-block;
 				min-width: 35px;
 				margin-left: 20px; 
@@ -104,7 +109,31 @@ ol ol, ol ul{ list-style:lower-roman inside; overflow: hidden; margin-bottom:0;}
 				font-size: 20px;
 				text-decoration: none;
 			}
+
 			.menu_link:hover{text-decoration: none;}
+
+
+			/*-------- ADMIN MENU -----------*/
+			#menu_admin li{
+				display: inline-block;
+				min-width: 35px;
+				margin-left: 20px; 
+    			overflow: hidden;
+    			text-overflow: ellipsis;
+    			white-space: nowrap;
+			}
+
+			.submenu_link{
+				display: none;
+				font-size: 15px;
+				text-decoration: none;
+			}
+
+			.submenu_link:hover{text-decoration: none;}
+
+			#menu_admin:hover .submenu_link{
+				display: inline-block;
+			}
 
 	/*--------------------------------- RECHERCHE ---------------------------------*/
 
