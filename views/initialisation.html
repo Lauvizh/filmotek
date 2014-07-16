@@ -1,0 +1,40 @@
+<?php require_once('header.html');
+// below : div#main
+?>
+<section id="connection">
+	<h2>Initialisation</h2>
+	<form id="form-init" name="form-init" method="post" action="">
+		<input type="hidden" id="form_name" name="form_name" value="initialisation"/>
+		<input type="hidden" id="token" name="token" value="<?= (isset($form['token']))?$form['token']:''; ?>"/>
+		<div>
+			<label for="surname" class="">Administrator surname: </label>
+			<input class="<?= (isset($formErrors['surname']))?'formError':''?>" type="text" name="surname" id="surname" placeholder="Administrator surname" value="<?= (isset($_POST['surname']))?$_POST['surname']:'';?>"  required/>
+			<?= (isset($formErrors['surname']))?'<span class="formErrorMsg">'.$formErrors['surname'].'</span>':'';?>
+			<em>1 to 35 characters</em>
+		</div>
+		<div>
+			<label for="email" class="">Administrator email: </label>
+			<input class="<?= (isset($formErrors['email']))?'formError':''?>" type="email" name="email" id="email" placeholder="Administrator email" value="<?= (isset($_POST['email']))?$_POST['email']:'';?>" required/>
+			<?= (isset($formErrors['email']))?'<span class="formErrorMsg">'.$formErrors['email'].'</span>':'';?>
+			<em>valid email</em>
+		</div>
+		<div>
+			<label for="password" class="">Administrator password: </label>
+			<input class="<?= (isset($formErrors['password']))?'formError':''?>" type="password" name="password" id="password" placeholder="Administrator password" />
+			<?= (isset($formErrors['password']))?'<span class="formErrorMsg">'.$formErrors['password'].'</span>':'';?>
+			<em>minimum 6 characters</em>
+		</div>
+		<div>
+			<label for="passwordconf" class="">Confirm administrator password: </label>
+			<input class="<?= (isset($formErrors['passwordconf']))?'formError':''?>" type="password" name="passwordconf" id="passwordconf" placeholder="Administrator password" />
+			<?= (isset($formErrors['passwordconf']))?'<span class="formErrorMsg">'.$formErrors['passwordconf'].'</span>':'';?>
+			<em>identical to the first password</em>
+		</div>
+		<div>
+			<button type="submit" class="icon-user">Initialize filmotek</button>
+		</div>
+	</form>
+</section>
+<?php
+// above : div#main
+require_once('footer.html'); ?>

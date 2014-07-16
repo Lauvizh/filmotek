@@ -1,23 +1,24 @@
 <?php
 $CONFIG=array();
-/*----------- CONFIG DE CONNECTION BASE -------------*/
 
-	$CONFIG['hote'] ='localhost'; // le chemin vers le serveur
-	$CONFIG['port'] ='8889'; // port
-	$CONFIG['nom_bd'] =''; // le nom de votre base de données
-	$CONFIG['dsn'] = 'mysql:dbname='.$CONFIG['nom_bd'].';host='.$CONFIG['hote'];
-	$CONFIG['utilisateur'] =''; // nom d'utilisateur pour se connecter
-	$CONFIG['mot_passe'] =''; // mot de passe de l'utilisateur pour se connecter
-	$CONFIG['options']  = array(PDO::MYSQL_ATTR_INIT_COMMAND    => "SET NAMES utf8");
-	$CONFIG['PrefixDB'] = 'filmo'; // suffixe des tables pour acroitre la securité.
+/*----------- SETTINGS CHAGEABLE -------------*/
 
+	$CONFIG['serverHost'] =''; // Server <--- fill this
+	$CONFIG['dbName'] =''; // Datebase Name <--- fill this
+	$CONFIG['dbUser'] =''; // database user name <--- fill this
+	$CONFIG['dbPassword'] =''; // database password <--- fill this
+	$CONFIG['PrefixDB'] = 'filmo'; // tables prefix to insure unique tables. <--- (optional)
 
-/*------- Adresse du dossier image pour fonctions dans www/ -----*/
-	$CONFIG['dir_posters'] = 'posters/';
-	$CONFIG['prefix_posters'] = 'filmo';
+/*----------- INTERFACE PARAMETERS -------------*/
 
-/*----------- FILMO CONFIGURATION -------------*/
 	$CONFIG['siteTitle'] = 'filmo';
-	$CONFIG['movies_lastadded'] = 10;
-	$CONFIG['movies_by_page'] = 5; // nombre d'images par pages
+	$CONFIG['homepage_movies_by_category'] = 10;
+	$CONFIG['movies_by_pages'] = 5; // number of movies by categories.
 	$CONFIG['shortcut_by_page'] = 5; // nombre de numéro de page en bas de l'index !! impaire
+
+/*----------- MYSQL CONFIGURATION -------------*/
+
+	$CONFIG['options']  = array(PDO::MYSQL_ATTR_INIT_COMMAND    => "SET NAMES utf8"); // ! don't change exept
+	$CONFIG['dsn'] = 'mysql:dbname='.$CONFIG['dbName'].';host='.$CONFIG['serverHost']; // ! don't change exept
+
+
