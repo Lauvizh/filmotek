@@ -1,0 +1,16 @@
+<?php require_once('header.html') 
+// below : div#main
+?>
+<h1><?= $person ?></h1>
+<ul>
+<?php foreach ($results as $movie): ?>
+	<li class="thumb_frame">
+		<a class="movie_frame" title="<?=$movie['title']?>" href="<?= $this->url('movie',array('id'=>$movie['id'])) ?>" style="background-image : url('<?= $this->url('posters/filmothumb_'.$movie['id'].'.jpg') ?>');">
+		<img class="hiddenthumb" src="<?= $this->url('posters/filmothumb_'.$movie['id'].'.jpg') ?>">
+		</a>
+	</li>
+<?php endforeach ?>
+</ul>
+<?php
+// above : div#main
+require_once('footer.html') ?>
