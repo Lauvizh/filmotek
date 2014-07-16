@@ -12,17 +12,17 @@ Another way to list your movies.
 	Research part
 	and a litle css.
 
+# 2014-07-16 ######################################
+	navigation in categories and genres
+	actors list of movie
+	directors list of movie
+	initialisation
+
 # TO DO ######################################
 
 	- front
-		- the research part
-		- movie detail html
-		- navigation in categories and genres
-		- actors list of movie
-		- directors list of movie
-
+		- movie detail html and css
 		- css design
-
 		- make it ajax friendly
 
 	- back
